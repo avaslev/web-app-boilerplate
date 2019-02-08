@@ -17,8 +17,13 @@ services:
       volumes_from:
         - applications
       tty: true
-      depends_on:
-        - mailhog
+      
+### Composer Container #############################
+
+    composer:
+      image: composer
+      volumes:
+        - ${APPLICATION}/api:/app
 
 ### PHP-FPM Container #######################################
 
