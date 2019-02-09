@@ -14,8 +14,13 @@ services:
     workspace:
       build:
         context: ./workspace
+      expose:
+        - "4200"
+      ports:
+        - "4200:4200"
       volumes_from:
         - applications
+        - postgres
       tty: true
       
 ### Composer Container #############################

@@ -1,0 +1,59 @@
+<div fxLayout="column" fxLayoutAlign="space-between none">
+  <h1>Login</h1>
+
+  <form>
+    <mat-form-field appearance="legacy">
+      <input matInput placeholder="Enter your email" [formControl]="email" required>
+      <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="email.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+      <input matInput placeholder="Enter your password" type="password" [formControl]="password" required>
+      <mat-error *ngIf="password.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </form>
+  <span>user@onlamp / secret</span>
+
+  <button mat-raised-button color="primary"
+          [disabled]="email.invalid || password.invalid"
+          (click)="login()">
+    Submit
+  </button>
+</div>
+
+<!--<div [hidden]="!error" class="alert alert-danger">-->
+<!--{{ error }}-->
+<!--</div>-->
+
+<!--<fieldset [disabled]="isLoading">-->
+<!--<form (ngSubmit)="login()" [formGroup]="loginForm">-->
+<!--<div class="form-group">-->
+<!--<label class="d-block">-->
+<!--<input type="text" class="form-control" [placeholder]="'Email'" formControlName="email">-->
+<!--<app-control-messages [control]="f['email']"></app-control-messages>-->
+<!--</label>-->
+<!--</div>-->
+<!--<div class="form-group">-->
+<!--<label class="d-block">-->
+<!--<input type="password" class="form-control" [placeholder]="'Password'" formControlName="password">-->
+<!--<app-control-messages [control]="f['password']"></app-control-messages>-->
+<!--</label>-->
+<!--</div>-->
+<!--<div class="form-group">-->
+<!--<button type="submit" class="btn btn-primary btn-block btn-raised" type="submit" [disabled]="loginForm.invalid">-->
+<!--<span [hidden]="isLoading">Submit</span>-->
+<!--<span [hidden]="!isLoading">-->
+<!--<fa-icon icon="asterisk" size="3x" [spin]="true"></fa-icon>-->
+<!--</span>-->
+<!--</button>-->
+<!--</div>-->
+<!--<a [routerLink]="['/auth/register']">Don't have an account? Sign up here!</a>-->
+<!--</form>-->
+<!--</fieldset>-->

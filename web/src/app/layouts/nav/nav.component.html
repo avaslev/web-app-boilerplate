@@ -1,0 +1,37 @@
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="center center">
+  <div fxFlex.gt-md="1279px" fxFlex>
+    <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="12px">
+
+      <a mat-button routerLink="/" class="logo" fxFlexFill.lt-sm>{{title}}</a>
+
+      <div fxShow="false" fxShow.gt-sm>
+        <button mat-button [matMenuTriggerFor]="menu">
+          <mat-icon>face</mat-icon>
+          {{(user | async)?.email}}
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="logout()">Log out</button>
+        </mat-menu>
+      </div>
+
+      <button mat-button (click)="hideSxMenuItems=!hideSxMenuItems" fxHide="false" fxHide.gt-sm>
+        <mat-icon>menu</mat-icon>
+      </button>
+
+    </div>
+  </div>
+</mat-toolbar>
+
+<mat-toolbar fxHide.gt-sm fxHide="{{hideSxMenuItems}}">
+  <mat-toolbar-row>
+    <span><mat-icon>face</mat-icon> name</span>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row>
+    <button mat-button (click)="hideSxMenuItems=true">Products</button>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row>
+    <button mat-button (click)="hideSxMenuItems=true" routerLink="/products">Products</button>
+  </mat-toolbar-row>
+</mat-toolbar>

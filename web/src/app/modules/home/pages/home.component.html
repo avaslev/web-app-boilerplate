@@ -1,0 +1,22 @@
+<div fxLayout="column" fxLayoutAlign="space-around" fxLayoutGap="12px">
+
+  <div fxFlex>
+    <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="12px">
+      <button mat-raised-button color="accent">Add</button>
+    </div>
+  </div>
+
+  <div fxFlex>
+    <div fxLayout="row wrap" fxLayout.xs="column wrap" fxLayoutGap="12px grid">
+
+          <div fxFlex="25" fxFlex.lt-lg="33" fxFlex.lt-md="50" fxFlex.lt-sm *ngFor="let _ of [1,2,3,4,5,6,7,8,9,10,11,12]">
+            <mat-card fxFlex>
+              <img width="100%" src="https://dummyimage.com/400x400/b252b5/e3e3e3" alt="Photo of a Shiba Inu">
+              The Shiba In
+            </mat-card>
+          </div>
+
+    </div>
+  </div>
+
+</div>

@@ -19,7 +19,7 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
-    public function save (User $user): void
+    public function save(User $user): void
     {
         $this->_em->persist($user);
         $this->_em->flush($user);

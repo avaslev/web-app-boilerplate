@@ -32,21 +32,24 @@ class UserProvider implements UserProviderInterface
     }
 
     /**
-     * @param string $username
-     * @return UserInterface|void
+     * {@inheritdoc}
      */
     public function loadUserByUsername($username)
     {
-        // TODO: Implement loadUserByUsername() method.
+        $user = $this->userRepository->findOneBy(['email' => $username]);
+        if (!$user) {
+            throw new UsernameNotFoundException(sprintf('Username "%s" does not exist.', $username));
+        }
+        return $user;
     }
 
 
     /**
-     * @param UserInterface $user
-     * @return User|null|UserInterface
+     * {@inheritdoc}
      */
     public function refreshUser(UserInterface $user)
     {
+
         if (!$user instanceof User) {
             throw new UnsupportedUserException(sprintf('Invalid user class "%s".', get_class($user)));
         }
