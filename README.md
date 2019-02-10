@@ -44,7 +44,7 @@ Create schema and add fixtures for API :
 Install requires fot front:    
     
     docker-compose -f ./devtools/docker-compose.yml run --rm workspace npm i --prefix ./web
-    docker-compose -f ./devtools/docker-compose.yml run --rm workspace npm build --prefix ./web
+    docker-compose -f ./devtools/docker-compose.yml run --rm workspace npm run build --prefix ./web
 
 
 Run

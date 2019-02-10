@@ -19,6 +19,12 @@ export class ApiService {
     return this.httpClient.get(BASE_URL + path, {params}).pipe(catchError(this.formatErrors));
   }
 
+  public getList(path: string, params: HttpParams = new HttpParams()): Observable<any> {
+    return this.httpClient.get(BASE_URL + path, {params}).pipe(
+      catchError(this.formatErrors)
+    );
+  }
+
   public put(path: string, body: object = {}): Observable<any> {
     return this.httpClient
       .put(BASE_URL + path, JSON.stringify(body), this.options)
