@@ -1,0 +1,12 @@
+<mat-card>
+  <a [routerLink]="'/products/' + product.id">
+    <img mat-card-image src="https://dummyimage.com/400x400/b252b5/e3e3e3" alt="{{product.name}}">
+  </a>
+  <mat-card-content fxLayout="row wrap" xLayoutAlign="center center">
+    <div fxFlex class="mat-body text-center">{{product.name}}</div>
+    <div fxFlex class="mat-body text-center">{{product.price}} $</div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-stroked-button fxFlex  [routerLink]="'/products/' + product.id">EDIT</button>
+  </mat-card-actions>
+</mat-card>
