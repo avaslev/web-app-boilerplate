@@ -12,6 +12,11 @@ import {AuthGuard} from '@app/core';
 const routes: Routes = [
   {
     path: '',
+    redirectTo: '/products',
+    pathMatch: 'full'
+  },
+  {
+    path: '',
     component: ContentLayoutComponent,
     canActivate: [AuthGuard], // Should be replaced with actual auth guard
     children: CONTENT_ROUTES

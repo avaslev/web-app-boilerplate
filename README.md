@@ -41,7 +41,7 @@ Create schema and add fixtures for API :
     docker-compose -f ./devtools/docker-compose.yml run --rm workspace api/bin/console doctrine:schema:update --force
     docker-compose -f ./devtools/docker-compose.yml run --rm workspace api/bin/console api:user:create user@onlamp secret
     
-Install requires fot front:    
+Install requires to front:    
     
     docker-compose -f ./devtools/docker-compose.yml run --rm workspace npm i --prefix ./web
     docker-compose -f ./devtools/docker-compose.yml run --rm workspace npm run build --prefix ./web

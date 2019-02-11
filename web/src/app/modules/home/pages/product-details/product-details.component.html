@@ -1,0 +1,33 @@
+<div *ngIf="product">
+
+  <h2 class="mat-h1" *ngIf="product.id">{{product.name | uppercase}} Details</h2>
+  <h2 class="mat-h1" *ngIf="!product.id">Create</h2>
+
+  <form (ngSubmit)="onSubmit()" #productForm="ngForm">
+    <mat-form-field appearance="legacy">
+      <input matInput placeholder="Product name"
+             required
+             [(ngModel)]="product.name" name="name"
+             #name="ngModel">
+      <mat-error *ngIf="name.hasError('required')">
+        Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+      <input matInput placeholder="Product price"
+             type="number"
+             required
+             [(ngModel)]="product.price" name="price"
+             #price="ngModel">
+      <mat-error *ngIf="price.hasError('required')">
+        Price is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+  </form>
+
+  <button mat-raised-button color="primary" (click)="onSubmit()">SAVE</button>
+  <button mat-raised-button color="warn" (click)="onCancel()">CLOSE</button>
+
+</div>

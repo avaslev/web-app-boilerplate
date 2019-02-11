@@ -27,4 +27,11 @@ export class ProductService {
   get(id: number): Observable<Product> {
     return this.apiService.get(routes.product(id));
   }
+
+  save(product: Product): Observable<Product> {
+    if (product.id) {
+      return this.apiService.put(routes.product(product.id), product);
+    }
+    return this.apiService.post(routes.products, product);
+  }
 }
