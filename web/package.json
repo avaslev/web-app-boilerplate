@@ -1,5 +1,5 @@
 {
-  "name": "shopfront",
+  "name": "app",
   "version": "0.0.1",
   "scripts": {
     "ng": "./node_modules/@angular/cli/bin/ng",
