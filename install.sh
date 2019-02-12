@@ -7,7 +7,6 @@ docker-compose -f ./devtools/docker-compose.yml build
 docker-compose -f ./devtools/docker-compose.yml run --rm composer install --ignore-platform-reqs
 
 #Generate the SSH keys :
-docker-compose -f ./devtools/docker-compose.yml run --rm workspace mkdir api/config/jwt
 sed -n 's/^JWT_PASSPHRASE= *\([^ ]*\) */\1/p' ./api/.env | openssl genrsa -passout stdin -out api/config/jwt/private.pem -aes256 4096
 sed -n 's/^JWT_PASSPHRASE= *\([^ ]*\) */\1/p' ./api/.env | openssl rsa -passin stdin -pubout -in api/config/jwt/private.pem -out api/config/jwt/public.pem
 docker-compose -f ./devtools/docker-compose.yml run --rm workspace chmod a+rw api/config/jwt/*

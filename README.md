@@ -24,7 +24,6 @@ Install requires for api:
     
 Generate the SSH keys, passphrase from `./api/.env` :
     
-    docker-compose -f ./devtools/docker-compose.yml run --rm workspace mkdir -p api/config/jwt
     docker-compose -f ./devtools/docker-compose.yml run --rm workspace openssl genrsa -out api/config/jwt/private.pem -aes256 4096
     docker-compose -f ./devtools/docker-compose.yml run --rm workspace openssl rsa -pubout -in api/config/jwt/private.pem -out api/config/jwt/public.pem
     docker-compose -f ./devtools/docker-compose.yml run --rm workspace chmod a+rw api/config/jwt/*
