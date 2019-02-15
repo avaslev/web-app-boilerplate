@@ -1,0 +1,35 @@
+{
+    "name": "web-app-boilerplate/image-service",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexey Vasilyev",
+            "email": "alex@onlamp.ru"
+        }
+    ],
+    "require": {
+        "symfony/flex": "^1.1",
+        "guzzlehttp/guzzle": "^6.3",
+        "fabpot/goutte": "^3.2"
+    },
+    "require-dev": {
+        "symfony/dotenv": "^4.2",
+        "symfony/yaml": "^4.2",
+        "symfony/maker-bundle": "^1.11",
+        "codeception/codeception": "^2.5"
+    },
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        }
+    }
+    ,
+    "autoload": {
+        "psr-4": { "App\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "App\\Tests\\": "tests/" }
+    }
+}

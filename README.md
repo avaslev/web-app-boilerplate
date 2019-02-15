@@ -20,7 +20,7 @@ Build docker image :
 
 Install requires for api:
 
-    docker-compose -f ./devtools/docker-compose.yml run --rm composer install --ignore-platform-reqs
+    docker-compose -f ./devtools/docker-compose.yml run --rm composer install --ignore-platform --working-dir=./api
     
 Generate the SSH keys, passphrase from `./api/.env` :
     
@@ -63,6 +63,10 @@ Start environment :
 Symfony console like as :
 
     docker-compose -f ./devtools/docker-compose.yml exec workspace api/bin/console
+    
+Codeception like as :
+
+    docker-compose -f ./devtools/docker-compose.yml exec workspace image-service/vendor/bin/codecept generate:test unit ImageService -c image-service/codeception.yml 
     
 Angular start dev :
     

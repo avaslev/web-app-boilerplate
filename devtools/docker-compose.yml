@@ -28,7 +28,7 @@ services:
     composer:
       image: composer
       volumes:
-        - ${APPLICATION}/api:/app
+        - ${APPLICATION}:/app
 
 ### PHP-FPM Container #######################################
 
