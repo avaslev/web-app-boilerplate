@@ -3,8 +3,9 @@
 #Build docker image :
 docker-compose -f ./devtools/docker-compose.yml build
 
-#Install requires for api:
-docker-compose -f ./devtools/docker-compose.yml run --rm composer install --ignore-platform-reqs
+#Install requires for api and service:
+docker-compose -f ./devtools/docker-compose.yml run --rm composer install --ignore-platform-reqs --working-dir=./api
+docker-compose -f ./devtools/docker-compose.yml run --rm composer install --ignore-platform-reqs --working-dir=./image-service
 
 #Generate the SSH keys :
 sed -n 's/^JWT_PASSPHRASE= *\([^ ]*\) */\1/p' ./api/.env | openssl genrsa -passout stdin -out api/config/jwt/private.pem -aes256 4096

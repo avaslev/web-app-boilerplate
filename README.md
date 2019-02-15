@@ -18,9 +18,10 @@ Build docker image :
 
     docker-compose -f ./devtools/docker-compose.yml build
 
-Install requires for api:
+Install requires for api and service:
 
     docker-compose -f ./devtools/docker-compose.yml run --rm composer install --ignore-platform --working-dir=./api
+    docker-compose -f ./devtools/docker-compose.yml run --rm composer install --ignore-platform --working-dir=./image-service
     
 Generate the SSH keys, passphrase from `./api/.env` :
     
