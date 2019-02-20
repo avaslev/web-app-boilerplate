@@ -16,10 +16,10 @@ class NoImageStorage implements StorageInterface, ProducibleInterface, Deletable
         $this->mediaUrl = $mediaUrl;
     }
 
-    public function delete(string $mediaName)
+    public function delete(string $mediaName): bool
     {
         $this->support($mediaName);
-        return;
+        return true;
     }
 
     public function produce(string $name): string

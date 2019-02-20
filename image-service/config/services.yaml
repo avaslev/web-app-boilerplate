@@ -23,25 +23,32 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
     
-    App\Storge\NoImageStorage:
+    App\Storage\NoImageStorage:
         arguments:
             - '%no_photo_url%'
             
-    App\Storge\FilesystemStorage:
+    App\Storage\FilesystemStorage:
         arguments:
             - '%media_prefix%'
             - '%filesystem_dir%'
 
-    App\Service\ImageService:
+    App\Storage\StorageFactory:
         calls:
             - method: addStorage
               arguments:
-                  - App\Storge\InstagramStorage
+                  - '@App\Storage\InstagramStorage'            
             - method: addStorage
               arguments:
-                  - App\Storge\NoImageStorage      
+                  - '@App\Storage\NoImageStorage'
             - method: addStorage
               arguments:
-                  - App\Storge\FilesystemStorage     
-                  
-        
+                  - '@App\Storage\FilesystemStorage'
+                
+    App\Consumer\MediaConsumer:
+        arguments:
+            - '@serializer'
+            - '@App\Service\MediaService'
+        calls:
+            - method: setProducer
+              arguments:
+                  - '@old_sound_rabbit_mq.api_producer'        

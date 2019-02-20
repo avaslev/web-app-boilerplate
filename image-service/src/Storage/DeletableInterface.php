@@ -6,5 +6,5 @@ namespace App\Storage;
 
 interface DeletableInterface
 {
-    public function delete(string $mediaName);
+    public function delete(string $mediaName): bool;
 }

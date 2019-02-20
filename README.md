@@ -20,8 +20,8 @@ Build docker image :
 
 Install requires for api and service:
 
-    docker-compose -f ./devtools/docker-compose.yml run --rm composer install --ignore-platform --working-dir=./api
-    docker-compose -f ./devtools/docker-compose.yml run --rm composer install --ignore-platform --working-dir=./image-service
+    docker-compose -f ./devtools/docker-compose.yml run --rm composer install --ignore-platform-reqs --working-dir=./api
+    docker-compose -f ./devtools/docker-compose.yml run --rm composer install --ignore-platform-reqs --working-dir=./image-service
     
 Generate the SSH keys, passphrase from `./api/.env` :
     
@@ -53,6 +53,7 @@ And go:
 - `http://localhost` - fron end
 - `http://localhost/api/docs` - api documentation
 - `http://localhost/_profiler/search?limit=10` - symfony profiler
+- `http://localhost:15672/` - rabbitmq panel
 
 Development
 -----------

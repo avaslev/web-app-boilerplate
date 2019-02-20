@@ -74,13 +74,13 @@ class InstagramStorage implements StorageInterface, ProducibleInterface
     private function handleSharedDate (string $sharedDate): array
     {
         $prefixPattern = '/([^\{]*)(.*)$/s';
-        $postficPattern = '/(.*)([^\}]*)$/s';
+        $postficPattern = '/(.*)([^\}]+)$/s';
 
         $json = preg_replace($prefixPattern, '$2', $sharedDate);
         $json = preg_replace($postficPattern, '$1', $json);
 
         try {
-            $data = json_decode('{"a":1}', true);
+            $data = json_decode($json, true);
         } catch (\Exception $exception) {
             throw new \RuntimeException('Failed handle shared date');
         }

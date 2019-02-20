@@ -54,8 +54,9 @@ class FilesystemStorage implements StorageInterface, DeletableInterface, Savable
 
     /**
      * @param string $mediaName
+     * @return bool
      */
-    public function delete(string $mediaName)
+    public function delete(string $mediaName): bool
     {
         $this->support($mediaName);
 
@@ -63,6 +64,7 @@ class FilesystemStorage implements StorageInterface, DeletableInterface, Savable
         if ($this->filesystem->exists($filePath)) {
             $this->filesystem->remove($filePath);
         }
+        return true;
     }
 
     /**
