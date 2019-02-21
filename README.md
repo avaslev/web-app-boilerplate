@@ -73,7 +73,7 @@ Symfony console like as :
     
 Codeception like as :
 
-    docker-compose -f ./devtools/docker-compose.yml exec workspace image-service/vendor/bin/codecept generate:test unit ImageService -c image-service/codeception.yml 
+    docker-compose -f ./devtools/docker-compose.yml exec workspace image-service/vendor/bin/codecept run -c image-service/codeception.yml 
     
 Angular start dev :
     

@@ -20,9 +20,34 @@ services:
         - "4200:4200"
       volumes_from:
         - applications
+      tty: true
+      depends_on:
         - postgres
         - rabbitmq
-      tty: true
+       
+### Api consumer Container ###########################
+
+    api_consumer:
+      build:
+        context: ./workspace
+      restart: always
+      command: api/bin/console rabbitmq:consumer media
+      volumes_from:
+        - applications
+      depends_on:
+        - rabbitmq
+        
+### Media consumer Container ###########################
+
+    media_consumer:
+      build:
+        context: ./workspace
+      restart: always
+      command: image-service/bin/console rabbitmq:consumer media
+      volumes_from:
+        - applications
+      depends_on:
+        - rabbitmq
       
 ### Composer Container #############################
 
@@ -43,6 +68,8 @@ services:
       depends_on:
         - workspace
         - postgres
+        - api_consumer
+        - media_consumer
 
 ### NGINX Server Container ##################################
 
