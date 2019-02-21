@@ -55,10 +55,10 @@ Start environment :
     docker-compose -f ./devtools/docker-compose.yml up -d nginx
     
 And go:
-- `http://localhost` - fron end
-- `http://localhost/api/docs` - api documentation
-- `http://localhost/_profiler/search?limit=10` - symfony profiler
-- `http://localhost:15672/` - rabbitmq panel
+- [http://localhost](http://localhost) - fron end
+- [http://localhost/api/docs](http://localhost/api/docs) - api documentation
+- [http://localhost/_profiler/search?limit=10](http://localhost/_profiler/search?limit=10) - symfony profiler
+- [http://localhost:15672/](http://localhost:15672/) - rabbitmq panel
 
 Development
 -----------
