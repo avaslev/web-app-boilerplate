@@ -1,0 +1,6 @@
+{
+  "/media": {
+    "target": "http://nginx",
+    "secure": false
+  }
+}

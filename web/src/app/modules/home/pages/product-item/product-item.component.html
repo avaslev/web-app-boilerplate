@@ -1,5 +1,7 @@
 <mat-card>
-  <mat-icon mat-card-image (click)="onClickEdit(product)">image</mat-icon>
+  <!--<mat-icon mat-card-image (click)="onClickEdit(product)">image</mat-icon>-->
+  <img mat-card-image src="{{product.media ? product.media : '/assets/images/no_photo.jpg'}}" alt="Photo of a Shiba Inu">
+  <img src="">
   <mat-card-content fxLayout="row wrap" xLayoutAlign="center center">
     <div fxFlex class="mat-body text-center">{{product.name}}</div>
     <div fxFlex class="mat-body text-center">{{product.price}} $</div>
