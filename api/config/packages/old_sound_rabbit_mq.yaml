@@ -1,0 +1,18 @@
+old_sound_rabbit_mq:
+    connections:
+        default:
+            url: '%env(RABBITMQ_URL)%'
+    bindings:
+        - {exchange: api, destination: api_media, routing_key: 'api.media.*' }
+        - {exchange: api, destination: media, routing_key: 'media.*' }
+    producers:
+        # use 'old_sound_rabbit_mq.task_producer' service to send data.
+        api:
+            connection:       default
+            exchange_options: { name: 'api', type: topic }
+            queue_options: { name: 'api'}
+    consumers:
+        media:
+            connection:       default
+            queue_options:    { name: 'api_media'}
+            callback:         App\Consumer\MediaConsumer

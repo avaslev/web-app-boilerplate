@@ -5,9 +5,13 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     normalizationContext={"groups"={"read"}},
+ *     denormalizationContext={"groups"={"write"}}
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
  */
 class Product
@@ -16,11 +20,13 @@ class Product
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=150)
+     * @Groups({"read", "write"})
      * @Assert\NotBlank()
      * @Assert\Type("string")
      * @Assert\Length(max = 150)
@@ -29,11 +35,21 @@ class Product
 
     /**
      * @ORM\Column(type="float")
+     * @Groups({"read", "write"})
      * @Assert\NotBlank()
      * @Assert\Type("float")
      * @Assert\GreaterThan(0)
      */
     private $price;
+
+    /**
+     * @var string
+     * @Groups({"read"})
+     * @ORM\Column(type="string", length=500, nullable=true)
+     * @Assert\Type("string")
+     * @Assert\Length(max = 500)
+     */
+    private $media;
 
     /**
      * @return int|null
@@ -80,4 +96,23 @@ class Product
 
         return $this;
     }
+
+    /**
+     * @return null|string
+     */
+    public function getMedia(): ?string
+    {
+        return $this->media;
+    }
+
+    /**
+     * @param mixed $media
+     * @return Product
+     */
+    public function setMedia($media): self
+    {
+        $this->media = $media;
+        return $this;
+    }
+
 }

@@ -36,6 +36,11 @@ Create schema and add fixtures for API :
     docker-compose -f ./devtools/docker-compose.yml run --rm workspace api/bin/console doctrine:schema:update --force
     docker-compose -f ./devtools/docker-compose.yml run --rm workspace api/bin/console api:user:create user@onlamp secret
     
+Create exchanges and queues:
+    
+    docker-compose -f ./devtools/docker-compose.yml run --rm workspace image-service/bin/console rabbitmq:setup-fabric
+    docker-compose -f ./devtools/docker-compose.yml run --rm workspace api/bin/console rabbitmq:setup-fabric
+    
 Install requires to front:    
     
     docker-compose -f ./devtools/docker-compose.yml run --rm workspace npm i --unsafe-perm --prefix ./web

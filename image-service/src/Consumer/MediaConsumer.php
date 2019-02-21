@@ -55,7 +55,7 @@ class MediaConsumer implements ConsumerInterface
 
         $this->producer->publish(
             $this->serializer->serialize($mediaMessage, 'json'),
-            'media.' . $mediaMessage->getAction()
+            'api.media.' . $mediaMessage->getAction()
         );
     }
 

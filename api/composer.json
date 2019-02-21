@@ -1,10 +1,11 @@
 {
     "require": {
-        "symfony/flex": "^1.1",
-        "symfony/dotenv": "^4.2",
-        "symfony/yaml": "^4.2",
         "api-platform/api-pack": "^1.2",
-        "lexik/jwt-authentication-bundle": "^2.6"
+        "lexik/jwt-authentication-bundle": "^2.6",
+        "php-amqplib/rabbitmq-bundle": "^1.14",
+        "symfony/dotenv": "^4.2",
+        "symfony/flex": "^1.1",
+        "symfony/yaml": "^4.2"
     },
     "require-dev": {
         "symfony/debug-bundle": "^4.2",
