@@ -79,7 +79,7 @@ class ProductSubscriber implements EventSubscriberInterface
 
         $this->unitOfWork->computeChangeSets();
         $changeSet = $this->unitOfWork->getEntityChangeSet($product);
-        if (isset($changeSet['name'])) {
+        if (isset($changeSet['name']) || !$product->getId()) {
             $event->getRequest()->attributes->set(self::ACTION_MEDIA_PRODUCE, true);
             $event->getRequest()->attributes->set(self::ACTION_MEDIA_DELETE, (bool) $product->getMedia());
         }
