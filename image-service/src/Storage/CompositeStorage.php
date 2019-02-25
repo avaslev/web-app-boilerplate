@@ -4,7 +4,7 @@
 namespace App\Storage;
 
 
-class StorageFactory implements ProducibleInterface, SavableInterface, DeletableInterface
+class CompositeStorage implements ProducibleInterface, SavableInterface, DeletableInterface
 {
 
 

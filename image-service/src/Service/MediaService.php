@@ -3,31 +3,31 @@
 
 namespace App\Service;
 
-use App\Storage\StorageFactory;
+use App\Storage\CompositeStorage;
 
 
 class MediaService
 {
 
     /**
-     * @var StorageFactory
+     * @var CompositeStorage
      */
-    private $storageFactory;
+    private $compositeStorage;
 
 
-    public function __construct(StorageFactory $storageFactory)
+    public function __construct(CompositeStorage $compositeStorage)
     {
-        $this->storageFactory = $storageFactory;
+        $this->compositeStorage = $compositeStorage;
     }
 
     public function create(string $name): string
     {
-        $producedImage = $this->storageFactory->produce($name);
+        $producedImage = $this->compositeStorage->produce($name);
         if (!$producedImage) {
             throw new \RuntimeException();
         }
 
-        $mediaUrl = $this->storageFactory->save($producedImage);
+        $mediaUrl = $this->compositeStorage->save($producedImage);
         if (!isset($producedImage)) {
             throw new \RuntimeException();
         }
@@ -37,7 +37,7 @@ class MediaService
 
     public function delete(string $mediaUrl)
     {
-        if (!$this->storageFactory->delete($mediaUrl)) {
+        if (!$this->compositeStorage->delete($mediaUrl)) {
             throw new \RuntimeException();
         }
     }
