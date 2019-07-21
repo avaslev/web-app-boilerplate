@@ -5,6 +5,7 @@
         "php-amqplib/rabbitmq-bundle": "^1.14",
         "symfony/dotenv": "^4.2",
         "symfony/flex": "^1.1",
+        "symfony/mercure-bundle": "^0.1.2",
         "symfony/yaml": "^4.2"
     },
     "require-dev": {

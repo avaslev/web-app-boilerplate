@@ -13,10 +13,6 @@ export abstract class AbstractProductComponent {
       width: '250px',
       data: product
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      product = result;
-    });
   }
 
   onClickCreate(): void {

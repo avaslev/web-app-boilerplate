@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 
 import {Observable} from 'rxjs';
 
-import {ApiService} from './api.service';
+import {ApiService, SseService} from './index';
 import {Product, ItemCollection} from "../models";
 
 
@@ -17,7 +17,7 @@ const routes = {
 })
 export class ProductService {
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private sseService: SseService) {
   }
 
   getAll(): Observable<ItemCollection<Product>> {
@@ -33,5 +33,9 @@ export class ProductService {
       return this.apiService.put(routes.product(product.id), product);
     }
     return this.apiService.post(routes.products, product);
+  }
+
+  createSubscriber(topic: string): Observable<Product> {
+    return this.sseService.createSubsriber(topic);
   }
 }

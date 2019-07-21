@@ -59,6 +59,7 @@ And go:
 - [http://localhost/api/docs](http://localhost/api/docs) - api documentation
 - [http://localhost/_profiler/search?limit=10](http://localhost/_profiler/search?limit=10) - symfony profiler
 - [http://localhost:15672/](http://localhost:15672/) - rabbitmq panel
+- [http://localhost:10000/](http://localhost:10000/) - mercure debug
 
 Development
 -----------

@@ -9,6 +9,7 @@ export const environment = {
   production: false,
   version: env.npm_package_version + '-dev',
   apiServerUrl: 'http://localhost/api',
+  sseServerUrl: 'http://localhost/mercure/hub',
   authServerUrl: 'http://localhost/auth',
   envName: 'DEV',
 };
