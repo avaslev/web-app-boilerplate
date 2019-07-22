@@ -32,7 +32,7 @@ services:
       build:
         context: ./workspace
       restart: always
-      command: api/bin/console rabbitmq:consumer media
+      command: api/bin/console rabbitmq:consumer media -vv
       volumes_from:
         - applications
       depends_on:
@@ -44,7 +44,7 @@ services:
       build:
         context: ./workspace
       restart: always
-      command: image-service/bin/console rabbitmq:consumer media
+      command: image-service/bin/console rabbitmq:consumer media -vv
       volumes_from:
         - applications
       depends_on:

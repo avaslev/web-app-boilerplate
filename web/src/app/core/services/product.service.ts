@@ -2,8 +2,9 @@ import {Injectable} from '@angular/core';
 
 import {Observable} from 'rxjs';
 
-import {ApiService, SseService} from './index';
+import {ApiService} from './api.service';
 import {Product, ItemCollection} from "../models";
+import {SseService} from './sse.service';
 
 
 const routes = {

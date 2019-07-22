@@ -42,12 +42,17 @@ class MediaConsumer implements ConsumerInterface
             /** @var Product $product */
             $product = $this->entityManager
                 ->getRepository($mediaMessage->getContext()->getClass())
-                ->find($mediaMessage->getContext()->getId());
+                ->findOneById($mediaMessage->getContext()->getId());
 
-            $product->setMedia($mediaMessage->getMedia());
+            if ($product->getName() == $mediaMessage->getQuery()) {
+                $product->setMedia($mediaMessage->getMedia());
+                $this->entityManager->persist($product);
+                $this->entityManager->flush();
+                return;
+            }
 
-            $this->entityManager->persist($product);
-            $this->entityManager->flush();
+            $mediaMessage->setAction(MediaMessage::ACTION_DELETE);
+            $this->producer->publish($this->serializer->serialize($mediaMessage, 'json'), 'media.' . $mediaMessage->getAction());
         }
     }
 
