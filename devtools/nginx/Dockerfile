@@ -8,10 +8,7 @@ ARG PHP_UPSTREAM_CONTAINER=php-fpm
 ARG PHP_UPSTREAM_PORT=9000
 ARG SSE_UPSTREAM_CONTAINER=mercure
 
-RUN apk update \
-    && apk upgrade \
-    && apk add --no-cache bash \
-    && adduser -D -H -u 1000 -s /bin/bash www-data
+RUN adduser -u 1000 -D -S -G www-data www-data
 
 # Set upstream conf and remove the default conf
 RUN echo "upstream php-upstream { server ${PHP_UPSTREAM_CONTAINER}:${PHP_UPSTREAM_PORT}; }" > /etc/nginx/conf.d/upstream.conf && \
