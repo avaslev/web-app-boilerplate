@@ -1,4 +1,4 @@
-FROM php:7.2-cli
+FROM php:8.0-cli
 
 
 # PHP Extentions
@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
 
 # NodeJS
 RUN	apt-get update && apt-get install -y gnupg \
-	&& curl -sL https://deb.nodesource.com/setup_8.x | bash - \
-	&& apt-get install -y nodejs npm
+	&& curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+	&& apt-get install -y nodejs
 
 WORKDIR /var/www
