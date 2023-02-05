@@ -9,7 +9,6 @@ export abstract class AbstractProductComponent {
   }
 
   onClickEdit(product: Product): void {
-    console.log(product);
     const dialogRef = this.dialog.open(ProductDetailsComponent, {
       width: '250px',
       data: product

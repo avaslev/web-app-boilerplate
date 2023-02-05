@@ -37,6 +37,9 @@ class MediaService
 
     public function delete(string $mediaUrl)
     {
+        if (empty($mediaUrl)) {
+            return;
+        }
         if (!$this->compositeStorage->delete($mediaUrl)) {
             throw new \RuntimeException();
         }

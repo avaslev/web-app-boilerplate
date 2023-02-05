@@ -17,7 +17,6 @@ export class ProductDetailsComponent {
 
   onSubmit() {
     this.productService.save(this.product).subscribe(response => {
-      console.log(response);
       this.product = response;
       this.onCancel();
     });

@@ -3,25 +3,27 @@
 namespace App\Command;
 
 use App\Message\MediaMessage;
+use OldSound\RabbitMqBundle\RabbitMq\ProducerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class SendCommand extends Command
 {
     protected static $defaultName = 'media:produce';
-    /**
-     * @var ContainerInterface
-     */
-    private $container;
 
-    public function __construct(ContainerInterface $container)
+    private SerializerInterface $serializer;
+    private ProducerInterface $producer;
+
+    public function __construct(SerializerInterface $serializer, ProducerInterface $producer)
     {
         parent::__construct();
-        $this->container = $container;
+        $this->serializer = $serializer;
+        $this->producer = $producer;
     }
 
     protected function configure()
@@ -42,12 +44,12 @@ EOT
     {
         $io = new SymfonyStyle($input, $output);
 
-        $serializer = $this->container->get('serializer');
         $mediaMessage = new MediaMessage(MediaMessage::ACTION_PRODUCE);
         $mediaMessage->setQuery($input->getArgument('query'));
-        $this->container->get('old_sound_rabbit_mq.media_producer')->publish($serializer->serialize($mediaMessage, 'json'));
-
+        $this->producer->publish($this->serializer->serialize($mediaMessage, 'json'));
 
         $io->success('ok');
+
+        return self::SUCCESS;
     }
 }

@@ -11,7 +11,6 @@ use Doctrine\ORM\UnitOfWork;
 use OldSound\RabbitMqBundle\RabbitMq\ProducerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -59,13 +58,13 @@ class ProductSubscriber implements EventSubscriberInterface
         if ($event->getRequest()->attributes->get(self::ACTION_MEDIA_PRODUCE)) {
             $context = new ContextMediaMessage($product->getId(), Product::class);
             $message = new MediaMessage(MediaMessage::ACTION_PRODUCE, '', $product->getName(), $context);
-            $this->producer->publish($this->serializer->serialize($message, 'json'), 'media.' . $message->getAction());
+            $this->producer->publish($this->serializer->serialize($message, 'json'));
         }
 
         if ($event->getRequest()->attributes->get(self::ACTION_MEDIA_DELETE)) {
             $context = new ContextMediaMessage($product->getId(), Product::class);
             $message = new MediaMessage(MediaMessage::ACTION_DELETE, $product->getMedia(), '', $context);
-            $this->producer->publish($this->serializer->serialize($message, 'json'), 'media.' . $message->getAction());
+            $this->producer->publish($this->serializer->serialize($message, 'json'));
         }
     }
 

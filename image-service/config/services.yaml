@@ -36,7 +36,7 @@ services:
         calls:
             - method: addStorage
               arguments:
-                  - '@App\Storage\InstagramStorage'            
+                  - '@App\Storage\LoremSpaceStorage'            
             - method: addStorage
               arguments:
                   - '@App\Storage\NoImageStorage'
@@ -52,3 +52,7 @@ services:
             - method: setProducer
               arguments:
                   - '@old_sound_rabbit_mq.api_producer'        
+
+    App\Command\SendCommand:
+        arguments:
+            $producer: '@old_sound_rabbit_mq.media_producer'

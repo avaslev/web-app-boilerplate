@@ -10,7 +10,7 @@ old_sound_rabbit_mq:
         api:
             connection:       default
             exchange_options: { name: 'api', type: topic }
-            queue_options: { name: 'api'}
+            queue_options: { name: 'media'}
     consumers:
         media:
             connection:       default

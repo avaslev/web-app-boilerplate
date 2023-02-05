@@ -52,7 +52,7 @@ class MediaConsumer implements ConsumerInterface
             }
 
             $mediaMessage->setAction(MediaMessage::ACTION_DELETE);
-            $this->producer->publish($this->serializer->serialize($mediaMessage, 'json'), 'media.' . $mediaMessage->getAction());
+            $this->producer->publish($this->serializer->serialize($mediaMessage, 'json'));
         }
     }
 

@@ -5,15 +5,16 @@ old_sound_rabbit_mq:
     producers:
         # use 'old_sound_rabbit_mq.task_producer' service to send data.
         media:
-            connection:       default
+            connection: default
             exchange_options: { name: 'media', type: fanout }
-            queue_options: { name: 'media'}
+            queue_options: { name: 'media' }
         api:
-            connection:       default
-            exchange_options: { name: '%env(MEDIA_APP_EXCHANGE)%', type: '%env(MEDIA_APP_EXCHANGE_TYPE)%' }
+            connection: default
+            exchange_options: { name: 'media', type: fanout }
+            queue_options: { name: 'api_media' }
     consumers:
         media:
-            connection:       default
-#            exchange_options: { name: 'media', type: topic }
-            queue_options: { name: 'media'}
-            callback:         App\Consumer\MediaConsumer
+            connection: default
+            #            exchange_options: { name: 'media', type: topic }
+            queue_options: { name: 'media' }
+            callback: App\Consumer\MediaConsumer
