@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
-import {environment} from '@env/environment';
-import {AuthService, User} from "@app/core";
-import {Observable} from "rxjs/Rx";
+import {AuthService, User} from "../../core";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-nav',

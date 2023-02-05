@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 
-import {AuthService} from '@app/core/services';
+import {AuthService} from '../services';
 
 export const AUTH_RETURN_URL = 'returnUrl';
 

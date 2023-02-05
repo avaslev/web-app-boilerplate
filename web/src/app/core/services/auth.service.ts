@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {of, Observable, throwError, BehaviorSubject} from 'rxjs';
+import {Observable, BehaviorSubject} from 'rxjs';
 
-import {User} from '../models/user.model';
+import {User} from '../models';
 import {HttpClient} from "@angular/common/http";
-import {environment as env} from "environments/environment";
+import {environment as env} from "../../../environments/environment";
 import {ApiService} from "./api.service";
 import {catchError, map} from "rxjs/operators";
 
@@ -16,9 +16,9 @@ export class AuthService extends ApiService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
-  constructor(protected httpClient: HttpClient) {
+  constructor(protected override httpClient: HttpClient) {
     super(httpClient);
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')!));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
@@ -30,7 +30,7 @@ export class AuthService extends ApiService {
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null);
+    this.currentUserSubject.next(null!);
   }
 
   login(username: string, password: string): Observable<User> {

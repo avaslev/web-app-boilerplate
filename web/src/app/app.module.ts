@@ -1,8 +1,8 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
-import {CoreModule} from '@app/core';
-import {SharedModule} from '@app/shared';
+import {CoreModule} from './core';
+import {SharedModule} from './shared';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
@@ -14,6 +14,7 @@ import {FooterComponent} from './layouts/footer/footer.component';
 import {AuthLayoutComponent} from './layouts/auth-layout/auth-layout.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NotFoundComponent} from './layouts/not-found/not-found.component';
+import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import {NotFoundComponent} from './layouts/not-found/not-found.component';
     BrowserModule,
 
     // 3rd party
+    MatDialogModule,
 
     // core & shared
     CoreModule,

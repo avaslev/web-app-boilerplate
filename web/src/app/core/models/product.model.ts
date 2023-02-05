@@ -1,4 +1,4 @@
-import {Item} from "@app/core/models/item.model";
+import {Item} from './item.model';
 
 export class Product extends Item {
   id: number;

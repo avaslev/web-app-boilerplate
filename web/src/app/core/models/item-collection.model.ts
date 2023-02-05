@@ -9,11 +9,12 @@ export class ItemCollection<T> extends Item {
     super();
   }
 
-  public getItems(type: { new(): T; }): T[] {
-    let items = [];
+  public getItems(): T[] {
+    let items:any[] = [];
 
     for (let item of this['hydra:member']) {
-      items.push(Object.assign(new type(), item));
+      let objectItem:T = item;
+      items.push(objectItem);
     }
     return items;
   }

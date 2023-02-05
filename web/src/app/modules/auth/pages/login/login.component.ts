@@ -4,8 +4,8 @@ import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 import {tap, delay, finalize, catchError} from 'rxjs/operators';
 import {of} from 'rxjs';
 
-import {AuthService, AUTH_RETURN_URL} from '@app/core';
-import {MatSnackBar} from "@angular/material";
+import {AuthService, AUTH_RETURN_URL} from '../../../../core';
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 const SUCCESS_REDIRECT_URL = '/';
 
@@ -20,13 +20,15 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   redirectUrl: string;
 
+  email = new FormControl('', [Validators.required, Validators.email]);
+  password = new FormControl('', [Validators.required]);
+
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private route: ActivatedRoute,
               private authService: AuthService,
               private snackBar: MatSnackBar) {
-    this.buildForm();
   }
 
   ngOnInit() {
@@ -38,18 +40,8 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  get email() {
-    return this.loginForm.get('email');
-  }
-
-  get password() {
-    return this.loginForm.get('password');
-  }
-
   login() {
-    const credentials = this.loginForm.value;
-
-    this.authService.login(credentials.email, credentials.password)
+    this.authService.login(this.email.value || '', this.password.value || '')
       .pipe(
         tap(user => this.router.navigate([this.redirectUrl])),
         catchError(error => of(this.openSnackBar(error.message, '')))
@@ -62,10 +54,4 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  private buildForm(): void {
-    this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
-    });
-  }
 }

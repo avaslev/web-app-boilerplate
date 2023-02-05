@@ -1,9 +1,11 @@
 import {Injectable} from '@angular/core';
-import {environment as env} from 'environments/environment';
-import {Observable, throwError} from 'rxjs';
+import {environment as env} from "../../../environments/environment";
+import {Observable} from 'rxjs';
+import { NativeEventSource, EventSourcePolyfill } from 'event-source-polyfill';
 
 const SSE_BASE_URL = env.sseServerUrl;
 const API_BASE_URL = env.apiServerUrl;
+const SSE_JWT = env.sseServerJWT;
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +22,11 @@ export class SseService {
     const subscribeURL = new URL(SSE_BASE_URL);
     subscribeURL.searchParams.append('topic', API_BASE_URL + topic);
     const observable = new Observable<any>(observer => {
-      const eventSource = new EventSource(subscribeURL + '');
+      const eventSource: EventSourcePolyfill = new EventSourcePolyfill (subscribeURL + '', {
+        headers: {
+          'Authorization': 'Bearer '+ SSE_JWT,
+        }
+      });
       eventSource.onmessage = x => observer.next(JSON.parse(x.data));
       eventSource.onerror = x => observer.error(x);
 

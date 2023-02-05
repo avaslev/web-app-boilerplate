@@ -1,8 +1,9 @@
 import {Routes} from '@angular/router';
+import {AuthLayoutComponent} from "../../layouts/auth-layout/auth-layout.component";
 
 export const CONTENT_ROUTES: Routes = [
-  {
+    {
     path: '',
-    loadChildren: './modules/home/home.module#HomeModule'
-  }
+    loadChildren: () => import('../../modules/home/home.module').then(mod => mod.HomeModule)
+  },
 ];

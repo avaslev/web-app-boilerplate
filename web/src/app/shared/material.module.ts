@@ -17,11 +17,11 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatDividerModule} from '@angular/material/divider';
-import {MatSliderModule} from '@angular/material/';
+import {MatSliderModule} from '@angular/material/slider';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material';
-import {MatFormFieldModule} from "@angular/material";
-import {MatProgressBarModule} from "@angular/material";
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 @NgModule({
   declarations: [],

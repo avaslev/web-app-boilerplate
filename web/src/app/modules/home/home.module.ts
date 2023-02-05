@@ -3,9 +3,11 @@ import {NgModule} from '@angular/core';
 import {HomeComponent} from './pages/home.component';
 import {HomeRoutingModule} from './home.routing';
 
-import {SharedModule} from '@app/shared';
+import {SharedModule} from '../../shared';
 import {ProductItemComponent} from './pages/product-item/product-item.component';
 import {ProductDetailsComponent} from './pages/product-details/product-details.component';
+import {MatDialog} from "@angular/material/dialog";
+import {ProductService} from "../../core";
 
 @NgModule({
   declarations: [
@@ -15,13 +17,14 @@ import {ProductDetailsComponent} from './pages/product-details/product-details.c
   ],
   imports: [
     SharedModule,
-
-    HomeRoutingModule
+    HomeRoutingModule,
   ],
   exports: [],
-  providers: [],
+  providers: [
+    ProductService,
+  ],
   entryComponents: [
-    ProductDetailsComponent,
+    // ProductDetailsComponent,
   ],
 })
 export class HomeModule {

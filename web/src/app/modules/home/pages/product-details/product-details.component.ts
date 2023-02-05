@@ -1,11 +1,12 @@
 import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
-import {Product, ProductService} from "@app/core";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {Product, ProductService} from "../../../../core";
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.scss']
+  styleUrls: ['./product-details.component.scss'],
+  providers: [ProductService]
 })
 export class ProductDetailsComponent {
 
@@ -16,6 +17,7 @@ export class ProductDetailsComponent {
 
   onSubmit() {
     this.productService.save(this.product).subscribe(response => {
+      console.log(response);
       this.product = response;
       this.onCancel();
     });

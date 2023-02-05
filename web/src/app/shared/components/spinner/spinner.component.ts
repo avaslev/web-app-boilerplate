@@ -7,8 +7,8 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class SpinnerComponent implements OnInit {
 
-  @Input() public isLoading = false;
-  @Input() public message: string;
+  @Input() isLoading = false;
+  @Input() message: any;
 
   constructor() {
   }

@@ -1,19 +1,20 @@
 import {Component, OnInit} from '@angular/core';
-import {map} from "rxjs/operators";
-import {ItemCollection, Product, ProductService} from "@app/core";
-import {MatDialog, MatSnackBar} from "@angular/material";
-import {AbstractProductComponent} from "@app/modules/home/abstract.product.component";
+import {Product, ProductService} from "../../../core";
+import {AbstractProductComponent} from "../abstract.product.component";
+import {MatDialog} from "@angular/material/dialog";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  providers: [ProductService],
 })
 export class HomeComponent extends AbstractProductComponent implements OnInit {
 
-  products: Product[];
+  products: Product[] = [];
 
-  constructor(private productService: ProductService, public dialog: MatDialog, private snackBar: MatSnackBar) {
+  constructor(private productService: ProductService, public override dialog: MatDialog, private snackBar: MatSnackBar) {
     super(dialog);
   }
 
@@ -24,11 +25,8 @@ export class HomeComponent extends AbstractProductComponent implements OnInit {
 
   loadProducts() {
     this.productService.getAll()
-      .pipe(
-        map(data => Object.assign(new ItemCollection<Product>(), data))
-      )
-      .subscribe(productCollection => {
-          this.products = productCollection.getItems(Product);
+      .subscribe(list => {
+          this.products = list.getItems();
         }
       );
   }
@@ -53,7 +51,7 @@ export class HomeComponent extends AbstractProductComponent implements OnInit {
 
         this.products = productList;
 
-        this.snackBar.open('Product ' + product.id + ' ' + action, null, {
+        this.snackBar.open('Product ' + product.id + ' ' + action, null!, {
           duration: 2000,
         });
       });

@@ -1,5 +1,5 @@
-import {Product} from "app/core/index";
-import {MatDialog} from "@angular/material";
+import {Product} from "../../core";
+import {MatDialog} from "@angular/material/dialog";
 import {ProductDetailsComponent} from "./pages/product-details/product-details.component";
 
 
@@ -9,6 +9,7 @@ export abstract class AbstractProductComponent {
   }
 
   onClickEdit(product: Product): void {
+    console.log(product);
     const dialogRef = this.dialog.open(ProductDetailsComponent, {
       width: '250px',
       data: product

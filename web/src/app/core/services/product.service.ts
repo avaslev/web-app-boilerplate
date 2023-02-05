@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {ApiService} from './api.service';
 import {Product, ItemCollection} from "../models";
 import {SseService} from './sse.service';
+import {map} from "rxjs/operators";
 
 
 const routes = {
@@ -22,7 +23,8 @@ export class ProductService {
   }
 
   getAll(): Observable<ItemCollection<Product>> {
-    return this.apiService.getList(routes.products);
+    return this.apiService.getList(routes.products)
+      .pipe(map((val) => Object.assign(new ItemCollection<Product>(), val)));
   }
 
   get(id: number): Observable<Product> {
