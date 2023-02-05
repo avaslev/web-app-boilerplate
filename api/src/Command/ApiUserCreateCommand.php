@@ -67,5 +67,7 @@ EOT
 
 
         $io->success(sprintf('User %s created!', $input->getArgument(self::ARGUMENT_EMAIL)));
+
+        return self::SUCCESS;
     }
 }

@@ -129,6 +129,8 @@ services:
         SERVER_NAME: ':80'
         MERCURE_PUBLISHER_JWT_KEY: '!ChangeThisMercureHubJWTSecretKey!'
         MERCURE_SUBSCRIBER_JWT_KEY: '!ChangeThisMercureHubJWTSecretKey!'
+        ALLOW_ANONYMOUS: 1
+        DEBUG: 1
 
 ### Volumes Setup #############################################
 

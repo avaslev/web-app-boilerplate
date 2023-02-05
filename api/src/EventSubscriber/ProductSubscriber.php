@@ -12,6 +12,7 @@ use OldSound\RabbitMqBundle\RabbitMq\ProducerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
+use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -50,7 +51,7 @@ class ProductSubscriber implements EventSubscriberInterface
         ];
     }
 
-    public function postUpdate(GetResponseForControllerResultEvent $event)
+    public function postUpdate(ViewEvent $event)
     {
         /** @var Product $product */
         $product = $event->getControllerResult();
@@ -68,7 +69,7 @@ class ProductSubscriber implements EventSubscriberInterface
         }
     }
 
-    public function handleChanges(GetResponseForControllerResultEvent $event)
+    public function handleChanges(ViewEvent $event)
     {
         $product = $event->getControllerResult();
         $method = $event->getRequest()->getMethod();
