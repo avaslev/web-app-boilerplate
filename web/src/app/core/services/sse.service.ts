@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {environment as env} from "../../../environments/environment";
 import {Observable} from 'rxjs';
-import { NativeEventSource, EventSourcePolyfill } from 'event-source-polyfill';
+import { EventSourcePolyfill } from 'event-source-polyfill';
 
 const SSE_BASE_URL = env.sseServerUrl;
 const API_BASE_URL = env.apiServerUrl;
@@ -25,7 +25,8 @@ export class SseService {
       const eventSource: EventSourcePolyfill = new EventSourcePolyfill (subscribeURL + '', {
         headers: {
           'Authorization': 'Bearer '+ SSE_JWT,
-        }
+        },
+        heartbeatTimeout: 120000,
       });
       eventSource.onmessage = x => observer.next(JSON.parse(x.data));
       eventSource.onerror = x => observer.error(x);

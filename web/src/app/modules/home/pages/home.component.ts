@@ -26,7 +26,7 @@ export class HomeComponent extends AbstractProductComponent implements OnInit {
   loadProducts() {
     this.productService.getAll()
       .subscribe(list => {
-          this.products = list.getItems();
+          this.products = list.getItems().reverse();
         }
       );
   }
@@ -46,7 +46,7 @@ export class HomeComponent extends AbstractProductComponent implements OnInit {
         });
 
         if (action == 'created') {
-          productList.push(product);
+          productList.unshift(product);
         }
 
         this.products = productList;
